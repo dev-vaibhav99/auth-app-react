@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import { login } from "../../services/user-service";
 import { ILogin } from "../../models/IUser";
 import { useNavigate } from "react-router-dom";
-import FormWrapper from "../Forms/FormWrapper";
-import Form from "../Forms/Form";
+import FormWrapper from "../../components/Forms/FormWrapper";
+import Form from "../../components/Forms/Form";
+import useAuth from "../../hooks/useAuth";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<string>("");
 
   const [user, setUser] = useState<ILogin>({
-    email: "chandrashekhar@gmail.com",
-    password: "Password@11",
+    email: "vaibhav@gmail.com",
+    password: "Vaibhav@11",
   });
+
+  const { setAuth } = useAuth();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setUser({
@@ -24,8 +27,20 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const result = await login(user);
-    localStorage.setItem("token", result);
-    result.includes("ERROR") ? setError(result) : navigate("/profile");
+    typeof result === "string" && result.includes("ERROR")
+      ? setError(result)
+      : navigate("/profile", { replace: true });
+    result?.accessToken && localStorage.setItem("token", result.accessToken);
+    setAuth({
+      user: result?.user,
+      accessToken: result?.accessToken,
+      role: result?.user?.userRole,
+    });
+    result?.user &&
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ ...result.user, password: "" })
+      );
   };
 
   return (

@@ -2,7 +2,14 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        headerBackgroundImage: "url(./src/assets/banner-crop.png)",
+      },
+      width: {
+        contentWidth: "calc(100% - 12rem)",
+      },
+    },
   },
   plugins: [],
 };

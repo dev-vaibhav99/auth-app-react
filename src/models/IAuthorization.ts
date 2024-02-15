@@ -1,3 +1,6 @@
+import { Component } from "react";
+
 export interface IProtectedRoute {
-  children: React.ReactNode;
+  path: string;
+  component: React.FC;
 }

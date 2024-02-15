@@ -7,7 +7,13 @@ const Profile: React.FC = () => {
     profile();
   }, []);
 
-  return <div>Profile {token}</div>;
+  return (
+    <div className="overflow-hidden whitespace-nowrap break-all">
+      <div className="">
+        <p>Profile {token}</p>
+      </div>
+    </div>
+  );
 };
 
 export default Profile;

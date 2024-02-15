@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { login } from "../../services/user-service";
 import { useNavigate } from "react-router-dom";
-import Form from "../Forms/Form";
-import FormWrapper from "../Forms/FormWrapper";
+import Form from "../../components/Forms/Form";
+import FormWrapper from "../../components/Forms/FormWrapper";
 import { IRegister } from "../../models/IUser";
 
 const Registration: React.FC = () => {
