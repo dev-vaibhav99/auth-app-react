@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "../../services/user-service";
 import { ILogin } from "../../models/IUser";
 import { useNavigate } from "react-router-dom";
@@ -11,9 +11,13 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string>("");
 
   const [user, setUser] = useState<ILogin>({
-    email: "vaibhav@gmail.com",
-    password: "Vaibhav@11",
+    email: "",
+    password: "",
   });
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const { setAuth } = useAuth();
 

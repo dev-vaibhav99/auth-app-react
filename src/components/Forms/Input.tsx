@@ -3,7 +3,7 @@ import React from "react";
 interface Props {
   type: string;
   name: string;
-  value: string | undefined;
+  value?: string | undefined;
   onChange: Function;
   placeholder: string;
 }

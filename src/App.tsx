@@ -6,22 +6,27 @@ import Profile from "./pages/User/Profile";
 import PageNotFound from "./components/PageNotFound";
 import ProtectedRoute from "./components/Authorization/ProtectedRoute";
 import Layout from "./components/Layout";
+import ErrorBoundary from "./pages/Error/ErrorBoundary";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" Component={Login} />
-        <Route path="registration" Component={Registration} />
-        <Route path="login" Component={Login} />
-        <Route path="/" element={<Layout />}>
-          <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
-            <Route path="profile" Component={Profile} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" Component={Login} />
+          <Route path="registration" Component={Registration} />
+          <Route path="/login" Component={Login} />
+          <Route path="/" element={<Layout />}>
+            <Route
+              element={<ProtectedRoute allowedRoles={["user", "admin"]} />}
+            >
+              <Route path="profile" Component={Profile} />
+            </Route>
+            <Route path="*" Component={PageNotFound} />
           </Route>
-          <Route path="*" Component={PageNotFound} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </ErrorBoundary>
   );
 }
 

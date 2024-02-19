@@ -9,4 +9,5 @@ export interface IRegister extends ILogin {
   gender: string | undefined;
   mobile: string | undefined;
   userRole: string | undefined;
+  imageUrl?: string | undefined;
 }

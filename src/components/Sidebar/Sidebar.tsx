@@ -12,7 +12,7 @@ const Sidebar: React.FC = () => {
     setIsAdmin(auth.role == "admin");
   }, [auth]);
   return (
-    <div className="bg-gray-800 text-white min-w-48 flex flex-col px-6">
+    <div className="bg-gray-700 text-white min-w-48 flex flex-col px-6">
       <div className="h-20 w-20 my-6">
         <img src={logo} alt="logo" className="rounded-full" />
       </div>
